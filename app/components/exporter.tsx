@@ -307,11 +307,12 @@ export function PreviewActions(props: {
     setShouldExport(false);
 
     var api: ClientApi;
-    if (config.modelConfig.model === "gemini-pro") {
-      api = new ClientApi(ModelProvider.GeminiPro);
-    } else {
-      api = new ClientApi(ModelProvider.GPT);
-    }
+    // if (config.modelConfig.model === "gemini-pro") {
+    //   api = new ClientApi(ModelProvider.GeminiPro);
+    // } else {
+    //   api = new ClientApi(ModelProvider.GPT);
+    // }
+    api = new ClientApi(ModelProvider.Cyber);
 
     api
       .share(msgs)

@@ -250,13 +250,22 @@ export const DEFAULT_MODELS = [
   //     providerType: "openai",
   //   },
   // },
+  // {
+  //   name: "gemini-pro",
+  //   available: true,
+  //   provider: {
+  //     id: "google",
+  //     providerName: "Google",
+  //     providerType: "google",
+  //   },
+  // },
   {
-    name: "gemini-pro",
+    name: "qwen",
     available: true,
     provider: {
-      id: "google",
-      providerName: "Google",
-      providerType: "google",
+      id: "Alibaba",
+      providerName: "Alibaba",
+      providerType: "Alibaba",
     },
   },
 ] as const;

@@ -303,11 +303,12 @@ export const useChatStore = createPersistStore(
         });
 
         var api: ClientApi;
-        if (modelConfig.model === "gemini-pro") {
-          api = new ClientApi(ModelProvider.GeminiPro);
-        } else {
-          api = new ClientApi(ModelProvider.GPT);
-        }
+        // if (modelConfig.model === "gemini-pro") {
+        //   api = new ClientApi(ModelProvider.GeminiPro);
+        // } else {
+        //   api = new ClientApi(ModelProvider.GPT);
+        // }
+        api = new ClientApi(ModelProvider.Cyber);
 
         // make request
         api.llm.chat({
@@ -488,11 +489,12 @@ export const useChatStore = createPersistStore(
         const modelConfig = session.mask.modelConfig;
 
         var api: ClientApi;
-        if (modelConfig.model === "gemini-pro") {
-          api = new ClientApi(ModelProvider.GeminiPro);
-        } else {
-          api = new ClientApi(ModelProvider.GPT);
-        }
+        // if (modelConfig.model === "gemini-pro") {
+        //   api = new ClientApi(ModelProvider.GeminiPro);
+        // } else {
+        //   api = new ClientApi(ModelProvider.GPT);
+        // }
+        api = new ClientApi(ModelProvider.Cyber);
 
         // remove error messages if any
         const messages = session.messages;
