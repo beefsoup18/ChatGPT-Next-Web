@@ -53,7 +53,7 @@ import Link from "next/link";
 import {
   Azure,
   Google,
-  OPENAI_BASE_URL,
+  // OPENAI_BASE_URL,
   Path,
   RELEASE_URL,
   STORAGE_KEY,
@@ -582,35 +582,35 @@ export function Settings() {
   }
 
   const accessStore = useAccessStore();
-  const shouldHideBalanceQuery = useMemo(() => {
-    const isOpenAiUrl = accessStore.openaiUrl.includes(OPENAI_BASE_URL);
+  // const shouldHideBalanceQuery = useMemo(() => {
+  //   const isOpenAiUrl = accessStore.openaiUrl.includes(OPENAI_BASE_URL);
 
-    return (
-      accessStore.hideBalanceQuery ||
-      isOpenAiUrl ||
-      accessStore.provider === ServiceProvider.Azure
-    );
-  }, [
-    accessStore.hideBalanceQuery,
-    accessStore.openaiUrl,
-    accessStore.provider,
-  ]);
+  //   return (
+  //     accessStore.hideBalanceQuery ||
+  //     isOpenAiUrl ||
+  //     accessStore.provider === ServiceProvider.Azure
+  //   );
+  // }, [
+  //   accessStore.hideBalanceQuery,
+  //   accessStore.openaiUrl,
+  //   accessStore.provider,
+  // ]);
 
   const usage = {
     used: updateStore.used,
     subscription: updateStore.subscription,
   };
   const [loadingUsage, setLoadingUsage] = useState(false);
-  function checkUsage(force = false) {
-    if (shouldHideBalanceQuery) {
-      return;
-    }
+  // function checkUsage(force = false) {
+  //   if (shouldHideBalanceQuery) {
+  //     return;
+  //   }
 
-    setLoadingUsage(true);
-    updateStore.updateUsage(force).finally(() => {
-      setLoadingUsage(false);
-    });
-  }
+  //   setLoadingUsage(true);
+  //   updateStore.updateUsage(force).finally(() => {
+  //     setLoadingUsage(false);
+  //   });
+  // }
 
   const enabledAccessControl = useMemo(
     () => accessStore.enabledAccessControl(),
@@ -624,12 +624,12 @@ export function Settings() {
   const [shouldShowPromptModal, setShowPromptModal] = useState(false);
 
   const showUsage = accessStore.isAuthorized();
-  useEffect(() => {
-    // checks per minutes
-    checkUpdate();
-    showUsage && checkUsage();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   // checks per minutes
+  //   checkUpdate();
+  //   showUsage && checkUsage();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   useEffect(() => {
     const keydownEvent = (e: KeyboardEvent) => {
@@ -961,7 +961,7 @@ export function Settings() {
                     </Select>
                   </ListItem>
 
-                  {accessStore.provider === "OpenAI" ? (
+                  {/* {accessStore.provider === "OpenAI" ? (
                     <>
                       <ListItem
                         title={Locale.Settings.Access.OpenAI.Endpoint.Title}
@@ -1118,13 +1118,13 @@ export function Settings() {
                         ></input>
                       </ListItem>
                     </>
-                  ) : null}
+                  ) : null} */}
                 </>
               )}
             </>
           )}
 
-          {!shouldHideBalanceQuery && !clientConfig?.isApp ? (
+          {/* {!shouldHideBalanceQuery && !clientConfig?.isApp ? (
             <ListItem
               title={Locale.Settings.Usage.Title}
               subTitle={
@@ -1148,7 +1148,7 @@ export function Settings() {
                 />
               )}
             </ListItem>
-          ) : null}
+          ) : null} */}
 
           <ListItem
             title={Locale.Settings.Access.CustomModel.Title}

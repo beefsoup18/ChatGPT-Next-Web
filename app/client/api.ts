@@ -6,8 +6,9 @@ import {
   ServiceProvider,
 } from "../constant";
 import { ChatMessage, ModelType, useAccessStore, useChatStore } from "../store";
-import { ChatGPTApi } from "./platforms/openai";
-import { GeminiProApi } from "./platforms/google";
+// import { ChatGPTApi } from "./platforms/openai";
+// import { GeminiProApi } from "./platforms/google";
+import { CyberApi } from "./platforms/cyberchat";
 export const ROLES = ["system", "user", "assistant"] as const;
 export type MessageRole = (typeof ROLES)[number];
 
@@ -57,7 +58,7 @@ export interface LLMModelProvider {
 
 export abstract class LLMApi {
   abstract chat(options: ChatOptions): Promise<void>;
-  abstract usage(): Promise<LLMUsage>;
+  // abstract usage(): Promise<LLMUsage>;
   abstract models(): Promise<LLMModel[]>;
 }
 
@@ -79,18 +80,19 @@ interface ChatProvider {
   models: Model[];
 
   chat: () => void;
-  usage: () => void;
+  // usage: () => void;
 }
 
 export class ClientApi {
   public llm: LLMApi;
 
   constructor(provider: ModelProvider = ModelProvider.GPT) {
-    if (provider === ModelProvider.GeminiPro) {
-      this.llm = new GeminiProApi();
-      return;
-    }
-    this.llm = new ChatGPTApi();
+    // if (provider === ModelProvider.GeminiPro) {
+    //   this.llm = new GeminiProApi();
+    //   return;
+    // }
+    // this.llm = new ChatGPTApi();
+    this.llm = new CyberApi();
   }
 
   config() {}
@@ -144,7 +146,7 @@ export function getHeaders() {
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
     "x-requested-with": "XMLHttpRequest",
-    "Accept": "application/json",
+    Accept: "application/json",
   };
   const modelConfig = useChatStore.getState().currentSession().mask.modelConfig;
   const isGoogle = modelConfig.model === "gemini-pro";
