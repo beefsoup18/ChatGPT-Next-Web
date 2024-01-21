@@ -15,8 +15,6 @@ export const CYBER_BASE_URL = "http://localhost:5000";
 
 export const GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/";
 
-// import { networkInterfaces } from 'os';
-
 export enum Path {
   Home = "/",
   Chat = "/chat",
@@ -273,14 +271,20 @@ export const DEFAULT_MODELS = [
 export const CHAT_PAGE_SIZE = 15;
 export const MAX_RENDER_MSG_COUNT = 45;
 
-// const nets = networkInterfaces();
-// const result = {};
-// for (const name of Object.keys(nets)) {
-//   for (const net of nets[name]) {
-//     // Skip over non-IPv4 and internal (i.e. 127.0.0.1) addresses
-//     if (net.family === 'IPv4' && !net.internal) {
-//       result[name] = net.mac;
-//     }
-//   }
-// }
-// export const localMAC = result['WLAN'];
+import os from "os";
+// 获取计算机的网络接口信息
+async function getMacAddress() {
+  const nets = os.networkInterfaces()!;
+  if (nets) {
+    // console.log('网络接口信息:', nets);
+    for (const name of Object.keys(nets ?? {})) {
+      for (const net of nets[name] ?? []) {
+        // Skip over non-IPv4 and internal (i.e. 127.0.0.1) addresses
+        if (net.family === "IPv4" && !net.internal) {
+          return net.mac;
+        }
+      }
+    }
+  }
+}
+export const localMAC = getMacAddress();

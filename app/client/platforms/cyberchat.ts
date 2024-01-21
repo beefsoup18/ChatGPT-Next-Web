@@ -19,7 +19,7 @@ import { prettyObject } from "@/app/utils/format";
 import { getClientConfig } from "@/app/config/client";
 // import { makeAzurePath } from "@/app/azure";
 
-// import { localMAC } from "@/app/constant"
+import { localMAC } from "@/app/constant";
 
 export interface OpenAIListModelResponse {
   object: string;
@@ -102,7 +102,7 @@ export class CyberApi implements LLMApi {
 
     const requestPayload = {
       message: message,
-      // "mac":localMAC,
+      mac: localMAC,
     };
 
     console.log("[Request] openai payload: ", requestPayload);
