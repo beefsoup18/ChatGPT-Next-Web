@@ -195,10 +195,10 @@ function Screen() {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               placeholder="请输入Key"
+              style={{ width: "600px" }} // 设置输入框宽度为200px
             />
-            <div className="button-container">
+            <div className="button">
               <button onClick={handleConfirm}>确认</button>
-              <button onClick={handleExit}>退出</button>
             </div>
           </div>
         </div>
