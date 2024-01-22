@@ -30,6 +30,8 @@ import { getClientConfig } from "../config/client";
 import { ClientApi } from "../client/api";
 import { useAccessStore } from "../store";
 
+// import { openDialog } from "@/app/login"
+
 export function Loading(props: { noLogo?: boolean }) {
   return (
     <div className={styles["loading-content"] + " no-dark"}>
@@ -123,6 +125,22 @@ const loadAsyncGoogleFont = () => {
 };
 
 function Screen() {
+  const [showDialog, setShowDialog] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+
+  const handleConfirm = () => {
+    if (inputValue !== "abcd") {
+      alert("Key错误");
+    } else {
+      setShowDialog(false); // 关闭弹窗
+    }
+  };
+
+  const handleExit = () => {
+    setShowDialog(false); // 关闭弹窗
+    window.close();
+  };
+
   const config = useAppConfig();
   const location = useLocation();
   const isHome = location.pathname === Path.Home;
@@ -132,8 +150,12 @@ function Screen() {
     getClientConfig()?.isApp || (config.tightBorder && !isMobileScreen);
 
   useEffect(() => {
-    loadAsyncGoogleFont();
+    setShowDialog(true);
   }, []);
+
+  // useEffect(() => {
+  //   loadAsyncGoogleFont();
+  // }, []);
 
   return (
     <div
@@ -162,6 +184,24 @@ function Screen() {
             </Routes>
           </div>
         </>
+      )}
+
+      {/* 弹窗 */}
+      {showDialog && (
+        <div className="overlay">
+          <div className="dialog">
+            <input
+              type="text"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              placeholder="请输入Key"
+            />
+            <div className="button-container">
+              <button onClick={handleConfirm}>确认</button>
+              <button onClick={handleExit}>退出</button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
