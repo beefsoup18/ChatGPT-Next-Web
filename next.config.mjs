@@ -64,18 +64,22 @@ if (mode !== "export") {
 
   nextConfig.rewrites = async () => {
     const ret = [
+      // {
+      //   source: "/api/proxy/:path*",
+      //   destination: "https://api.openai.com/:path*",
+      // },
+      // {
+      //   source: "/google-fonts/:path*",
+      //   destination: "https://fonts.googleapis.com/:path*",
+      // },
+      // {
+      //   source: "/sharegpt",
+      //   destination: "https://sharegpt.com/api/conversations",
+      // },
       {
-        source: "/api/proxy/:path*",
-        destination: "https://api.openai.com/:path*",
-      },
-      {
-        source: "/google-fonts/:path*",
-        destination: "https://fonts.googleapis.com/:path*",
-      },
-      {
-        source: "/sharegpt",
-        destination: "https://sharegpt.com/api/conversations",
-      },
+        source: "/api/:path*",
+        destination: "http://cyberchat.top/api/:path*",
+      }
     ];
 
     return {

@@ -338,9 +338,9 @@ export class CyberApi implements LLMApi {
       name: m.id,
       available: true,
       provider: {
-        id: "openai",
-        providerName: "OpenAI",
-        providerType: "openai",
+        id: "cyber",
+        providerName: "CyberAI",
+        providerType: "cyberai",
       },
     }));
   }

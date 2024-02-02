@@ -1,7 +1,7 @@
 import { getClientConfig } from "../config/client";
 import {
   ACCESS_CODE_PREFIX,
-  Azure,
+  // Azure,
   ModelProvider,
   ServiceProvider,
 } from "../constant";

@@ -1,6 +1,7 @@
 export const OWNER = "Yidadaa";
 export const REPO = "ChatGPT-Next-Web";
-export const REPO_URL = `https://github.com/${OWNER}/${REPO}`;
+// export const REPO_URL = `https://github.com/${OWNER}/${REPO}`;
+export const REPO_URL = `https://github.com/beefsoup18/${REPO}`;
 export const ISSUE_URL = `https://github.com/${OWNER}/${REPO}/issues`;
 export const UPDATE_URL = `${REPO_URL}#keep-updated`;
 export const RELEASE_URL = `${REPO_URL}/releases`;
@@ -11,7 +12,15 @@ export const RUNTIME_CONFIG_DOM = "danger-runtime-config";
 export const DEFAULT_CORS_HOST = "https://a.nextweb.fun";
 export const DEFAULT_API_HOST = `${DEFAULT_CORS_HOST}/api/proxy`;
 // export const OPENAI_BASE_URL = "https://api.openai.com";
-export const CYBER_BASE_URL = "http://localhost:5000";
+
+// export const CYBER_BASE_URL = "https://cyberchat.top:5000";
+export const CYBER_BASE_URL = "http://120.25.76.120:8000";
+// export const CYBER_BASE_URL = "http://120.25.76.120:5000";
+// export const CYBER_BASE_URL = "http://localhost:5000";
+// export const CYBER_BASE_URL = "http://192.168.1.105:5000";
+// export const CYBER_BASE_URL = "http://192.168.1.103:5000";
+// export const CYBER_BASE_URL = "http://127.0.0.1:5000";
+// export const CYBER_BASE_URL = "http://cyberchat.top:5000";
 
 export const GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/";
 
@@ -27,7 +36,7 @@ export enum Path {
 export enum ApiPath {
   Cors = "/api/cors",
   OpenAI = "/api/openai",
-  Cyber = "/api",
+  Cyber = "/chatbot/api",
 }
 
 export enum SlotID {
@@ -86,22 +95,22 @@ export enum ModelProvider {
 // };
 
 export const CyberPath = {
-  ChatPath: "echo", // "qwen-14b",
+  ChatPath: "dialog", // "echo", // "qwen-14b",
   UsagePath: "",
   SubsPath: "",
   ListModelPath: "",
 };
 
-export const Azure = {
-  ExampleEndpoint: "https://{resource-url}/openai/deployments/{deploy-id}",
-};
+// export const Azure = {
+//   ExampleEndpoint: "https://{resource-url}/openai/deployments/{deploy-id}",
+// };
 
-export const Google = {
-  ExampleEndpoint: "https://generativelanguage.googleapis.com/",
-  ChatPath: "v1beta/models/gemini-pro:generateContent",
+// export const Google = {
+//   ExampleEndpoint: "https://generativelanguage.googleapis.com/",
+//   ChatPath: "v1beta/models/gemini-pro:generateContent",
 
-  // /api/openai/v1/chat/completions
-};
+//   // /api/openai/v1/chat/completions
+// };
 
 export const DEFAULT_INPUT_TEMPLATE = `{{input}}`; // input / time / model / lang
 export const DEFAULT_SYSTEM_TEMPLATE = `
