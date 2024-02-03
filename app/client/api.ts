@@ -142,36 +142,53 @@ export class ClientApi {
 }
 
 export function getHeaders() {
-  // const accessStore = useAccessStore.getState();
-  const headers: Record<string, string> = {
-    "Content-Type": "application/json",
-    "x-requested-with": "XMLHttpRequest",
-    Accept: "application/json",
-  };
-  // const modelConfig = useChatStore.getState().currentSession().mask.modelConfig;
-  // const isGoogle = modelConfig.model === "gemini-pro";
-  // const isAzure = accessStore.provider === ServiceProvider.Azure;
-  // const authHeader = isAzure ? "api-key" : "Authorization";
-  // const apiKey = isGoogle
-  //   ? accessStore.googleApiKey
-  //   : isAzure
-  //   ? accessStore.azureApiKey
-  //   : accessStore.openaiApiKey;
+  const myHeaders: Headers = new Headers();
+  // myHeaders.append("User-Agent", "Apifox/1.0.0 (https://apifox.com)");
+  myHeaders.append("Content-Type", "application/json");
+  myHeaders.append(
+    "Authorization",
+    "Token d03cd00389549d82e80ec209a57b1b9900d57614",
+  );
 
-  // const makeBearer = (s: string) => `${isAzure ? "" : "Bearer "}${s.trim()}`;
-  // const validString = (x: string) => x && x.length > 0;
-
-  // use user's api key first
-  // if (validString(apiKey)) {
-  //   headers[authHeader] = makeBearer(apiKey);
-  // } else if (
-  //   accessStore.enabledAccessControl() &&
-  //   validString(accessStore.accessCode)
-  // ) {
-  //   headers[authHeader] = makeBearer(
-  //     ACCESS_CODE_PREFIX + accessStore.accessCode,
-  //   );
-  // }
+  const headers: Record<string, string> = {};
+  myHeaders.forEach((value, key) => {
+    headers[key] = value;
+  });
 
   return headers;
 }
+
+// export function getHeaders() {
+//   // const accessStore = useAccessStore.getState();
+//   const headers: Record<string, string> = {
+//     "Content-Type": "application/json",
+//     "x-requested-with": "XMLHttpRequest",
+//     Accept: "application/json",
+//   };
+// const modelConfig = useChatStore.getState().currentSession().mask.modelConfig;
+// const isGoogle = modelConfig.model === "gemini-pro";
+// const isAzure = accessStore.provider === ServiceProvider.Azure;
+// const authHeader = isAzure ? "api-key" : "Authorization";
+// const apiKey = isGoogle
+//   ? accessStore.googleApiKey
+//   : isAzure
+//   ? accessStore.azureApiKey
+//   : accessStore.openaiApiKey;
+
+// const makeBearer = (s: string) => `${isAzure ? "" : "Bearer "}${s.trim()}`;
+// const validString = (x: string) => x && x.length > 0;
+
+// use user's api key first
+// if (validString(apiKey)) {
+//   headers[authHeader] = makeBearer(apiKey);
+// } else if (
+//   accessStore.enabledAccessControl() &&
+//   validString(accessStore.accessCode)
+// ) {
+//   headers[authHeader] = makeBearer(
+//     ACCESS_CODE_PREFIX + accessStore.accessCode,
+//   );
+// }
+
+//   return headers;
+// }

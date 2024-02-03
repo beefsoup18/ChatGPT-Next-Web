@@ -280,20 +280,22 @@ export const DEFAULT_MODELS = [
 export const CHAT_PAGE_SIZE = 15;
 export const MAX_RENDER_MSG_COUNT = 45;
 
-import os from "os";
-// 获取计算机的网络接口信息
-async function getMacAddress() {
-  const nets = os.networkInterfaces()!;
-  if (nets) {
-    // console.log('网络接口信息:', nets);
-    for (const name of Object.keys(nets ?? {})) {
-      for (const net of nets[name] ?? []) {
-        // Skip over non-IPv4 and internal (i.e. 127.0.0.1) addresses
-        if (net.family === "IPv4" && !net.internal) {
-          return net.mac;
-        }
-      }
-    }
-  }
-}
+import { getMacAddress } from "@/app/registry";
+// import os from "os";
+// async function getMacAddress() {
+//   console.log(os.networkInterfaces)
+//   const nets = os.networkInterfaces!;
+//   if (nets) {
+//     // console.log('网络接口信息:', nets);
+//     for (const name of Object.keys(nets ?? {})) {
+//       for (const net of nets[name] ?? []) {
+//         // Skip over non-IPv4 and internal (i.e. 127.0.0.1) addresses
+//         if (net.family === "IPv4" && !net.internal) {
+//             console.log(net.mac)
+//           return net.mac;
+//         }
+//       }
+//     }
+//   }
+// }
 export const localMAC = getMacAddress();
