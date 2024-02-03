@@ -48,7 +48,7 @@ export const useAccessStore = createPersistStore(
 
   (set, get) => ({
     enabledAccessControl() {
-      this.fetch();
+      // this.fetch();
 
       return get().needCode;
     },
@@ -65,40 +65,40 @@ export const useAccessStore = createPersistStore(
       return ensure(get(), ["googleApiKey"]);
     },
 
-    isAuthorized() {
-      this.fetch();
+    // isAuthorized() {
+    //   this.fetch();
 
-      // has token or has code or disabled access control
-      return (
-        this.isValidOpenAI() ||
-        this.isValidAzure() ||
-        this.isValidGoogle() ||
-        !this.enabledAccessControl() ||
-        (this.enabledAccessControl() && ensure(get(), ["accessCode"]))
-      );
-    },
-    fetch() {
-      if (fetchState > 0 || getClientConfig()?.buildMode === "export") return;
-      fetchState = 1;
-      fetch("/api/config", {
-        method: "post",
-        body: null,
-        headers: {
-          ...getHeaders(),
-        },
-      })
-        .then((res) => res.json())
-        .then((res: DangerConfig) => {
-          console.log("[Config] got config from server", res);
-          set(() => ({ ...res }));
-        })
-        .catch(() => {
-          console.error("[Config] failed to fetch config");
-        })
-        .finally(() => {
-          fetchState = 2;
-        });
-    },
+    //   // has token or has code or disabled access control
+    //   return (
+    //     this.isValidOpenAI() ||
+    //     this.isValidAzure() ||
+    //     this.isValidGoogle() ||
+    //     !this.enabledAccessControl() ||
+    //     (this.enabledAccessControl() && ensure(get(), ["accessCode"]))
+    //   );
+    // },
+    // fetch() {
+    //   if (fetchState > 0 || getClientConfig()?.buildMode === "export") return;
+    //   fetchState = 1;
+    //   fetch("/api/config", {
+    //     method: "post",
+    //     body: null,
+    //     headers: {
+    //       ...getHeaders(),
+    //     },
+    //   })
+    //     .then((res) => res.json())
+    //     .then((res: DangerConfig) => {
+    //       console.log("[Config] got config from server", res);
+    //       set(() => ({ ...res }));
+    //     })
+    //     .catch(() => {
+    //       console.error("[Config] failed to fetch config");
+    //     })
+    //     .finally(() => {
+    //       fetchState = 2;
+    //     });
+    // },
   }),
   {
     name: StoreKey.Access,
