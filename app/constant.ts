@@ -280,7 +280,7 @@ export const DEFAULT_MODELS = [
 export const CHAT_PAGE_SIZE = 15;
 export const MAX_RENDER_MSG_COUNT = 45;
 
-import { getMacAddress } from "@/app/registry";
+import { getMacAddress } from "@/app/registry"; //, saveDataToLocalStorage
 // import os from "os";
 // async function getMacAddress() {
 //   console.log(os.networkInterfaces)
@@ -298,4 +298,14 @@ import { getMacAddress } from "@/app/registry";
 //     }
 //   }
 // }
+
+// export var localMAC = "";
+// async function getMac() {
+//   getMacAddress().then(mac => {localMAC=mac;});
+// }
+// getMac();
 export const localMAC = getMacAddress();
+// getMacAddress().then((value) => {localMAC=value});
+console.log(localMAC);
+
+// saveDataToLocalStorage("lllllll");

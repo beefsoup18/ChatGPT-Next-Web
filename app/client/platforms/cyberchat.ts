@@ -106,7 +106,7 @@ export class CyberApi implements LLMApi {
       mac: localMAC,
     };
 
-    console.log("[Request] openai payload: ", requestPayload);
+    console.log("[Request] cyberchat payload: ", requestPayload);
 
     const shouldStream = !!options.config.stream;
     const controller = new AbortController();
