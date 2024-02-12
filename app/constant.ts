@@ -13,8 +13,9 @@ export const DEFAULT_CORS_HOST = "https://a.nextweb.fun";
 export const DEFAULT_API_HOST = `${DEFAULT_CORS_HOST}/api/proxy`;
 // export const OPENAI_BASE_URL = "https://api.openai.com";
 
-// export const CYBER_BASE_URL = "https://cyberchat.top:5000";
-export const CYBER_BASE_URL = "http://120.25.76.120:8000";
+export const CYBER_BASE_URL = "https://cyberchat.top";
+// export const CYBER_BASE_URL = "http://120.25.76.120:8000";
+
 // export const CYBER_BASE_URL = "http://120.25.76.120:5000";
 // export const CYBER_BASE_URL = "http://localhost:5000";
 // export const CYBER_BASE_URL = "http://192.168.1.105:5000";
@@ -95,7 +96,7 @@ export enum ModelProvider {
 // };
 
 export const CyberPath = {
-  ChatPath: "dialog", // "echo", // "qwen-14b",
+  ChatPath: "dialog/", // "echo", // "qwen-14b",
   UsagePath: "",
   SubsPath: "",
   ListModelPath: "",
@@ -280,7 +281,7 @@ export const DEFAULT_MODELS = [
 export const CHAT_PAGE_SIZE = 15;
 export const MAX_RENDER_MSG_COUNT = 45;
 
-import { getMacAddress } from "@/app/registry"; //, saveDataToLocalStorage
+// import { getMacAddress } from "@/app/registry"; //, saveDataToLocalStorage
 // import os from "os";
 // async function getMacAddress() {
 //   console.log(os.networkInterfaces)
@@ -301,11 +302,11 @@ import { getMacAddress } from "@/app/registry"; //, saveDataToLocalStorage
 
 // export var localMAC = "";
 // async function getMac() {
-//   getMacAddress().then(mac => {localMAC=mac;});
+// getMacAddress().then(mac => {localMAC=mac;});
 // }
 // getMac();
-export const localMAC = getMacAddress();
+// export const localMAC = getMacAddress();
 // getMacAddress().then((value) => {localMAC=value});
-console.log(localMAC);
+// console.log(localMAC);
 
 // saveDataToLocalStorage("lllllll");

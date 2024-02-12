@@ -32,10 +32,11 @@
 import os from "os";
 // 获取计算机的网络接口信息
 export async function getMacAddress(): Promise<string> {
-  const nets = os.networkInterfaces()!; // :NodeJS.Dict<os.NetworkInterfaceInfo[]>
+  const nets = os.networkInterfaces(); // :NodeJS.Dict<os.NetworkInterfaceInfo[]>
   if (nets) {
     // console.log('网络接口信息:', nets);
     for (const name of Object.keys(nets ?? {})) {
+      console.log(name);
       for (const net of nets[name] ?? []) {
         // Skip over non-IPv4 and internal (i.e. 127.0.0.1) addresses
         if (net.family === "IPv4" && !net.internal) {
@@ -100,3 +101,51 @@ export async function getMacAddress(): Promise<string> {
 //     const savedData = localStorage.getItem('myData');
 //     console.log(savedData); // 输出 "要保存的数据"
 // }
+
+// 发送 POST 请求并解析 JSON 的函数
+async function sendPostRequest(
+  url: string,
+  data: any,
+  port: number,
+): Promise<any> {
+  try {
+    // 构建请求 URL
+    const requestUrl = `${url}:${port}`;
+
+    // 发送 POST 请求
+    const response = await fetch(requestUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    // 检查响应状态
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    // 解析 JSON 响应
+    const jsonData = await response.json();
+    return jsonData;
+  } catch (error) {
+    console.error("Error sending POST request:", error);
+    throw error;
+  }
+}
+
+//   // 使用示例
+//   const data = {
+//     key1: 'value1',
+//     key2: 'value2',
+//   };
+//   const url = 'http://example.com'; // 替换为你的 URL
+//   const port = 8080; // 替换为你的端口号
+//   sendPostRequest(url, data, port)
+//     .then((result) => {
+//       console.log('Response JSON:', result);
+//     })
+//     .catch((error) => {
+//       console.error('Error:', error);
+//     });
