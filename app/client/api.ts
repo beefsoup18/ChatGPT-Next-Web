@@ -154,7 +154,6 @@ export function getHeaders() {
   myHeaders.forEach((value, key) => {
     headers[key] = value;
   });
-
   return headers;
 }
 

@@ -19,7 +19,8 @@ import { prettyObject } from "@/app/utils/format";
 import { getClientConfig } from "@/app/config/client";
 // import { makeAzurePath } from "@/app/azure";
 
-import { localMAC } from "@/app/constant";
+// import { localMAC } from "@/app/constant";
+import { getMacAddress } from "@/app/registry";
 
 export interface OpenAIListModelResponse {
   object: string;
@@ -32,8 +33,13 @@ export interface OpenAIListModelResponse {
 
 export class CyberApi implements LLMApi {
   private disableListModels = true;
+  private localMAC = "";
 
   path(path: string): string {
+    getMacAddress().then((mac) => {
+      this.localMAC = mac;
+    });
+
     const accessStore = useAccessStore.getState();
 
     const isAzure = accessStore.provider === ServiceProvider.Azure;
@@ -103,7 +109,7 @@ export class CyberApi implements LLMApi {
     const requestPayload = {
       role: "user",
       text: message,
-      mac: localMAC,
+      mac: this.localMAC,
     };
 
     console.log("[Request] cyberchat payload: ", requestPayload);
@@ -120,12 +126,10 @@ export class CyberApi implements LLMApi {
         signal: controller.signal,
         headers: getHeaders(),
       };
-      console.log("chatPath");
-      console.log(chatPath);
       const res = await fetch(chatPath, chatPayload);
       const resJson = await res.json();
-      const message = this.extractMessage(resJson);
-      options.onFinish(message);
+      // const message = this.extractMessage(resJson.text);
+      options.onFinish(resJson.text);
 
       // // make a fetch request
       // const requestTimeoutId = setTimeout(

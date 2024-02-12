@@ -21,30 +21,32 @@ export function corsFetch(
     proxyUrl?: string;
   },
 ) {
-  if (!url.startsWith("http")) {
-    throw Error("[CORS Fetch] url must starts with http/https");
-  }
+  // if (!url.startsWith("http")) {
+  //   throw Error("[CORS Fetch] url must starts with http/https");
+  // }
 
-  let proxyUrl = options.proxyUrl ?? corsPath(ApiPath.Cors);
-  if (!proxyUrl.endsWith("/")) {
-    proxyUrl += "/";
-  }
+  // let proxyUrl = options.proxyUrl ?? corsPath(ApiPath.Cors);
+  // if (!proxyUrl.endsWith("/")) {
+  //   proxyUrl += "/";
+  // }
 
-  url = url.replace("://", "/");
+  // url = url.replace("://", "/");
 
-  const corsOptions = {
-    ...options,
-    method: "POST",
-    headers: options.method
-      ? {
-          ...options.headers,
-          method: options.method,
-        }
-      : options.headers,
-  };
+  // const corsOptions = {
+  //   ...options,
+  //   method: "POST",
+  //   headers: options.method
+  //     ? {
+  //         ...options.headers,
+  //         method: options.method,
+  //       }
+  //     : options.headers,
+  // };
 
-  const corsUrl = proxyUrl + url;
-  console.info("[CORS] target = ", corsUrl);
+  // const corsUrl = proxyUrl + url;
+  // console.info("[CORS] target = ", corsUrl);
 
-  return fetch(corsUrl, corsOptions);
+  // return fetch(corsUrl, corsOptions);
+
+  return fetch(url, options);
 }
