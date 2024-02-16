@@ -1,31 +1,13 @@
-// function getLocalNetworkInterfaces() {
-//     return new Promise((resolve, reject) => {
-//       if (window.RTCPeerConnection) {
-//         const pc = new RTCPeerConnection({ iceServers: [] });
-//         pc.createDataChannel('');
-//         pc.createOffer()
-//           .then(offer => pc.setLocalDescription(offer))
-//           .then(() => {
-//             pc.onicecandidate = (event) => {
-//               if (event.candidate) {
-//                 const addressRegex = /([0-9]{1,3}(\.[0-9]{1,3}){3})/;
-//                 const ipAddress = addressRegex.exec(event.candidate.candidate)[1];
-//                 resolve(ipAddress);
-//                 pc.onicecandidate = null;
-//                 pc.close();
-//               }
-//             };
-//           })
-//           .catch(reject);
-//       } else {
-//         reject(new Error('RTCPeerConnection is not supported'));
-//       }
-//     });
+// const { invoke } = require('@tauri-apps/api');
+// export async function getMacAddress(): Promise<string> {
+//   try {
+//     // const macAddresses = await invoke('get_mac_address');
+//     // console.log(macAddresses);
+//     // return macAddresses;
+//   } catch (error) {
+//     console.error('Error retrieving MAC address:', error);
+//     // return "";
 //   }
-
-// export function getMacAddress(): string {
-//   // 调用函数获取本地网络接口信息
-//   getLocalNetworkInterfaces()
 //   return "";
 // }
 
@@ -33,6 +15,7 @@ import os from "os";
 // 获取计算机的网络接口信息
 export async function getMacAddress(): Promise<string> {
   const nets = os.networkInterfaces(); // :NodeJS.Dict<os.NetworkInterfaceInfo[]>
+  console.log(nets);
   if (nets) {
     // console.log('网络接口信息:', nets);
     for (const name of Object.keys(nets ?? {})) {

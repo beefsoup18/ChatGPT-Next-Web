@@ -33,12 +33,17 @@ export interface OpenAIListModelResponse {
 
 export class CyberApi implements LLMApi {
   private disableListModels = true;
-  private localMAC = "";
+  private localMAC = "null";
 
   path(path: string): string {
-    getMacAddress().then((mac) => {
-      this.localMAC = mac;
-    });
+    getMacAddress()
+      .then((localMAC) => {
+        this.localMAC = localMAC;
+        console.log(this.localMAC);
+      })
+      .catch((error) => {
+        console.error("Error retrieving MAC address:", error);
+      });
 
     const accessStore = useAccessStore.getState();
 
@@ -84,26 +89,6 @@ export class CyberApi implements LLMApi {
       content: v.content,
     }));
 
-    const modelConfig = {
-      ...useAppConfig.getState().modelConfig,
-      ...useChatStore.getState().currentSession().mask.modelConfig,
-      ...{
-        model: options.config.model,
-      },
-    };
-
-    // const requestPayload = {
-    //   messages,
-    //   stream: options.config.stream,
-    //   model: modelConfig.model,
-    //   temperature: modelConfig.temperature,
-    //   presence_penalty: modelConfig.presence_penalty,
-    //   frequency_penalty: modelConfig.frequency_penalty,
-    //   top_p: modelConfig.top_p,
-    //   // max_tokens: Math.max(modelConfig.max_tokens, 1024),
-    //   // Please do not ask me why not send max_tokens, no reason, this param is just shit, I dont want to explain anymore.
-    // };
-
     const message = messages[messages.length - 1]["content"];
 
     const requestPayload = {
@@ -129,6 +114,7 @@ export class CyberApi implements LLMApi {
       const res = await fetch(chatPath, chatPayload);
       const resJson = await res.json();
       // const message = this.extractMessage(resJson.text);
+      // options.onFinish(this.localMAC);
       options.onFinish(resJson.text);
 
       // // make a fetch request
